@@ -13,7 +13,12 @@
       </nav>
       <section id="header_info_section">
         <p>Combien d'informations souhaitez-vous afficher sur cette page ?</p>
-        <input type="number" id="infoCount" min="1" max="1000" value="20" />
+        <select name="number" id="infoCount">
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
         <button onclick="afficherInformations()">Afficher</button>
       </section>
     </header>

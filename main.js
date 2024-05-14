@@ -9,20 +9,23 @@ function afficherInformations(page = 0) {
     .then((response) => response.json())
     .then((data) => {
       var infoContainer = document.getElementById("infoContainer");
+      var index = 0;
       infoContainer.innerHTML = "";
       data.forEach((info) => {
-        if (info.id >= page * infoCount && info.id < (page + 1) * infoCount) {
+        if (index >= page * infoCount && index < (page + 1) * infoCount) {
           var div = createGameElement("div", "info");
           var p = createGameElement("p", "name");
           var img = createGameElement("img", "image");
-
+          var id = createGameElement("p", "id");
+          id.textContent = info.id;
           p.textContent = info.name;
           img.src = info.images.xs;
-
-          div.appendChild(img);
+          div.appendChild(id);
           div.appendChild(p);
+          div.appendChild(img);
           infoContainer.appendChild(div);
         }
+        index += 1;
       });
       loadData(data);
     })
