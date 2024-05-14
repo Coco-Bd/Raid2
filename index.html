@@ -7,12 +7,12 @@
 <body>
     <h1>Bienvenue sur la page d'accueil de l'API</h1>
     <p>Combien d'informations souhaitez-vous afficher sur cette page ?</p>
-    <input type="number" id="infoCount" min="1" max="10">
+    <input type="number" id="infoCount" min="1" max="1000" value="20">
     <button onclick="afficherInformations()">Afficher</button>
     <div id="infoContainer"></div>
-    <button id="page_less" onclick="select_page('-')">-</button>
+    <button id="pageLess" onclick="select_page('-')">-</button>
     <div id="page">0</div>
-    <button id="page_more" onclick="select_page('+')">+</button>
+    <button id="pageMore" onclick="select_page('+')">+</button>
     
     
     
