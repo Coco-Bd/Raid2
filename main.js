@@ -13,17 +13,49 @@ function afficherInformations(page = 0) {
       infoContainer.innerHTML = "";
       data.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
-          var div = createGameElement("div", "info");
-          var p = createGameElement("p", "name");
-          var img = createGameElement("img", "image");
-          var id = createGameElement("p", "id");
+          var tr = createGameElement("tr", "info");
+          var name = createGameElement("th", "name");
+          var imgContainer = createGameElement("th", "image");
+          var img = createGameElement("img", "img");
+          var id = createGameElement("th", "id");
+          var full_name = createGameElement("th", "full_name");
+          var powerstats = createGameElement("th", "powerstats");
+          var race = createGameElement("th", "race");
+          var gender = createGameElement("th", "gender");
+          var height = createGameElement("th", "height");
+          var weight = createGameElement("th", "weight");
+          var place_of_birth = createGameElement("th", "place_of_birth");
+          var alignment = createGameElement("th", "alignment");
+
           id.textContent = info.id;
-          p.textContent = info.name;
+          name.textContent = info.name;
           img.src = info.images.xs;
-          div.appendChild(id);
-          div.appendChild(p);
-          div.appendChild(img);
-          infoContainer.appendChild(div);
+          full_name.textContent = info.biography.fullName;
+          race.textContent = info.appearance.race;
+          gender.textContent = info.appearance.gender;
+          height.textContent = info.appearance.height;
+          weight.textContent = info.appearance.weight;
+          place_of_birth.textContent = info.biography.placeOfBirth;
+          alignment.textContent = info.biography.alignment;
+
+          infoContainer.appendChild(tr);
+          tr.appendChild(imgContainer);
+          imgContainer.appendChild(img);
+          tr.appendChild(name);
+          tr.appendChild(id);
+          tr.appendChild(full_name);
+          tr.appendChild(powerstats);
+          //powerstats need to be fixed to display all powerstats
+          info.powerstats.forEach((powerstat) => {
+            var powerstatElement = createGameElement("p", "powerstat");
+            powerstatElement.textContent = powerstat;
+            powerstats.appendChild(powerstatElement);
+          });
+          tr.appendChild(gender);
+          tr.appendChild(height);
+          tr.appendChild(weight);
+          tr.appendChild(place_of_birth);
+          tr.appendChild(alignment);
         }
         index += 1;
       });

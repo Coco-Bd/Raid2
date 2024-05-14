@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
     <title>Page d'accueil de l'API</title>
   </head>
   <body>
     <header>
       <h1>Bienvenue sur la page d'accueil de l'API</h1>
       <nav class="research_container">
-        <input id="research" type="text" />
+        <input placeholder="Search here" id="research" type="text" />
       </nav>
       <section id="header_info_section">
         <p>Combien d'informations souhaitez-vous afficher sur cette page ?</p>
@@ -22,9 +23,9 @@
         <button onclick="afficherInformations()">Afficher</button>
       </section>
     </header>
-
-    <div id="infoContainer"></div>
-
+    <div class="container_table">
+      <table id="infoContainer"></table>
+    </div>
     <footer>
       <button id="pageLess" onclick="select_page('-')">-</button>
       <div id="page">0</div>
