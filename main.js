@@ -14,29 +14,30 @@ function afficherInformations(page = 0) {
     .then((data) => {
       var infoContainer = document.getElementById("infoContainer");
       var index = 0;
-      infoContainer.innerHTML = "";
+      // infoContainer.innerHTML = "";
       //sortAZ(filteredData, "appearance.race");
       data.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
           var tr = createGameElement("tr", "info");
-          var name = createGameElement("th", "name");
-          var imgContainer = createGameElement("th", "image");
+          var name = createGameElement("td", "name");
+          var imgContainer = createGameElement("td", "image");
           var img = createGameElement("img", "img");
-          var id = createGameElement("th", "id");
-          var full_name = createGameElement("th", "full_name");
+          // var id = createGameElement("th", "id");
+          var full_name = createGameElement("td", "full_name");
           var Containerpowerstats = createGameElement(
-            "th",
+            "td",
             "powerstatsContainer"
           );
-          var Divpowerstats = createGameElement("div", "powerstats");
-          var race = createGameElement("th", "race");
-          var gender = createGameElement("th", "gender");
-          var height = createGameElement("th", "height");
-          var weight = createGameElement("th", "weight");
-          var place_of_birth = createGameElement("th", "place_of_birth");
-          var alignment = createGameElement("th", "alignment");
+          var Divpowerstats = createGameElement("td", "powerstats");
+          var race = createGameElement("td", "race");
+          var g_h_w_container = createGameElement("td", "g_h_w_container");
+          var gender = createGameElement("h3", "gender");
+          var height = createGameElement("p", "height");
+          var weight = createGameElement("p", "weight");
+          var place_of_birth = createGameElement("td", "place_of_birth");
+          var alignment = createGameElement("td", "alignment");
 
-          id.textContent = info.id;
+          // id.textContent = info.id;
           name.textContent = info.name;
           img.src = info.images.xs;
           full_name.textContent = info.biography.fullName;
@@ -61,12 +62,13 @@ function afficherInformations(page = 0) {
           tr.appendChild(imgContainer);
           imgContainer.appendChild(img);
           tr.appendChild(name);
-          tr.appendChild(id);
+          // tr.appendChild(id);
           tr.appendChild(full_name);
           tr.appendChild(Divpowerstats);
-          tr.appendChild(gender);
-          tr.appendChild(height);
-          tr.appendChild(weight);
+          tr.appendChild(g_h_w_container);
+          g_h_w_container.appendChild(gender);
+          g_h_w_container.appendChild(height);
+          g_h_w_container.appendChild(weight);
           tr.appendChild(place_of_birth);
           tr.appendChild(alignment);
         }

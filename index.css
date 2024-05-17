@@ -3,25 +3,91 @@
   padding: 0;
   outline: none;
   position: relative;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+:root {
+  --grey: #adadad;
+}
+
+/* ------------------------------ Scrollbar ------------------------------ */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--grey);
+}
+
+/* ------------------------------ Global/HeaderDiv ------------------------------ */
+
+#background-img-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 2/3;
+  z-index: -1;
+}
+
+body {
+  padding: 20px;
+}
+#pageTile {
+  color: white;
+  text-align: center;
+}
+#research_container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 ::placeholder {
   display: flex;
   color: rgb(0, 0, 0);
   text-align: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 input {
-  height: 20px;
+  border-radius: 8px;
+  height: 30px;
+  border: none;
+  filter: drop-shadow(0 0 0.5rem var(--grey));
   text-align: center;
   &:focus::placeholder {
     color: transparent;
   }
 }
 
+button {
+  cursor: pointer;
+  height: 30px;
+  width: 125px;
+  border: none;
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  background-image: linear-gradient(
+    rgb(136, 136, 136) 0%,
+    rgb(123, 123, 123) 100%
+  );
+  box-shadow: inset 0 2px 0 0 hsla(0, 0%, 100%, 0.2),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.25), 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
 header {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,35 +95,112 @@ header {
   height: 200px;
   width: 100%;
   top: 0;
-  background-color: rgb(255, 255, 255);
 }
-
-button {
-  cursor: pointer;
-  height: 30px;
-  width: 125px;
-  border-radius: 8px;
-  color: rgb(255, 255, 255);
-  box-shadow: inset 0 2px 0 0 hsla(0, 0%, 100%, 0.2),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.25), 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-  background-image: linear-gradient(
-    rgb(149, 38, 202) 0%,
-    rgb(125, 36, 165) 100%
-  );
+.selector {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  color: white;
 }
-
-#research_container {
+#infoCount {
+  margin-left: 10px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50%;
+  border: none;
+  color: black;
+}
+option * {
+  background: none;
+  color: white;
+}
+#header_info_section {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+
+  width: 100%;
+  padding: 0 20px;
 }
+
+/* ------------------------------ Table ------------------------------ */
+
 .container_table {
   width: 100%;
   text-align: center;
 }
 table {
+  width: 100%;
+  border-spacing: 0 50px;
+}
+
+tr {
+  padding-right: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  height: 250px;
+  filter: drop-shadow(0 0 0.5rem var(--grey));
+}
+
+tr td:first-child {
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 13px;
+}
+
+tr td:last-child {
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 13px;
+  padding-right: 20px;
+}
+
+.img {
+  height: 50%;
   width: 50%;
-  border-collapse: collapse;
-  border-spacing: 0;
+  border-radius: 50%;
+}
+
+.image {
+  width: 20%;
+}
+
+.name {
+  width: 12.5%;
+}
+
+.full_name {
+  width: 12.5%;
+}
+
+.powerstats {
+  width: 18%;
+}
+.place_of_birth {
+  width: 14.5%;
+}
+
+.g_h_w_container {
+  width: 18%;
+}
+
+.alignment {
+  width: 14.5%;
+}
+/* ------------ table header ------------ */
+.tableHeader {
+  height: 50px;
+  position: -webkit-sticky; /* for browser compatibility */
+  position: sticky;
+  top: 5px;
+  z-index: 3;
+}
+tr th:first-child {
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 13px;
+}
+
+tr th:last-child {
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 13px;
+  padding-right: 20px;
 }

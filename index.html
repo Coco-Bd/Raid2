@@ -3,28 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
     <title>Page d'accueil de l'API</title>
   </head>
   <body>
+    <img id="background-img-fixed" src="/background.jpg" alt="" />
     <header>
-      <h1>Bienvenue sur la page d'accueil de l'API</h1>
+      <h1 id="pageTile">
+        Bienvenue sur la page de recensement d'Heors/Anti-heros
+      </h1>
       <nav class="research_container">
-      <input placeholder="Search here" id="search" type="search" onclick="select_page(0)"/>
+        <input
+          placeholder="Search here"
+          id="search"
+          type="search"
+          onclick="select_page(0)"
+        />
       </nav>
       <section id="header_info_section">
-        <p>Combien d'informations souhaitez-vous afficher sur cette page ?</p>
-        <select name="number" id="infoCount">
-          <option value="10">10</option>
-          <option value="20" selected>20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
+        <div class="selector">
+          <p>Combiensouhaitez-vous en afficher sur cette page :</p>
+          <select name="number" id="infoCount">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
         <button onclick="afficherInformations()">Afficher</button>
       </section>
     </header>
     <div class="container_table">
-      <table id="infoContainer"></table>
+      <table id="infoContainer">
+        <tr class="tableHeader">
+          <th colspan="2">Nickname</th>
+          <th>Name</th>
+          <th>PowerStats</th>
+          <th>Stats</th>
+          <th>Birth Place</th>
+          <th>Alignment</th>
+        </tr>
+      </table>
     </div>
     <footer>
       <button id="pageLess" onclick="select_page('-')">-</button>
