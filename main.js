@@ -46,6 +46,8 @@ function afficherInformations(page = 0) {
           weight.textContent = info.appearance.weight;
           place_of_birth.textContent = info.biography.placeOfBirth;
           alignment.textContent = info.biography.alignment;
+
+          //iterate over the powerstats object and create a paragraph for each key value pair
           Object.entries(info.powerstats).forEach(([key, value]) => {
             var Pragraphspowerstats = createGameElement(
               "p",
@@ -62,8 +64,6 @@ function afficherInformations(page = 0) {
           tr.appendChild(id);
           tr.appendChild(full_name);
           tr.appendChild(Divpowerstats);
-          //powerstats need to be fixed to display all powerstats
-
           tr.appendChild(gender);
           tr.appendChild(height);
           tr.appendChild(weight);
