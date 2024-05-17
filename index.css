@@ -4,6 +4,7 @@
   outline: none;
   position: relative;
   font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 1px;
 }
 
 :root {
