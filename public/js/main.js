@@ -18,7 +18,6 @@ function showInformation(page = 0) {
       infoContainer.innerHTML = "";
 
       var filteredData = search(data);
-      console.log(filteredData);
 
       filteredData.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
@@ -110,9 +109,6 @@ function createGameElement(element, className) {
 
 // function to search one of the heroes by name
 function search(info) {
-  // var footer = document.getElementById("carrousel");
-  // var page = document.getElementById("footerContainer");
-  // var infos;
   console.log("search");
   var search = document.getElementById("search").value;
   search.toLowerCase();
@@ -120,17 +116,6 @@ function search(info) {
     return info;
   } else {
     return info.filter((info) => info.name.toLowerCase().includes(search));
-
-    // hidde carrousel if no data found
-    if (filteredData.length === 0) {
-      console.log("No data found");
-      footer.style.display = "none";
-      page.style.display = "sticky";
-      page.style.bottom = "0";
-    } else {
-      footer.style.display = "flex";
-      page.style.display = "flex";
-    }
   }
 }
 // function to sort the data in ascending order

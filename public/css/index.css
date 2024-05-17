@@ -210,8 +210,6 @@ tr th:last-child {
 /* ------------------------------ Footer ------------------------------ */
 
 footer {
-  position: sticky;
-  bottom: 0px;
   overflow: hidden;
   margin-left: -20px;
   margin-right: -20px;
