@@ -1,10 +1,10 @@
 //Thisfunctioni scalledonlyafterthedatahasbeenfetched,andparsed.
-document.getElementById('search').addEventListener('input', function() {
+document.getElementById("search").addEventListener("input", function () {
   page = 0;
   select_page();
 });
 const loadData = (heroes) => {
-console.log(heroes);
+  console.log(heroes);
 };
 
 function afficherInformations(page = 0) {
@@ -24,7 +24,11 @@ function afficherInformations(page = 0) {
           var img = createGameElement("img", "img");
           var id = createGameElement("th", "id");
           var full_name = createGameElement("th", "full_name");
-          var powerstats = createGameElement("th", "powerstats");
+          var Containerpowerstats = createGameElement(
+            "th",
+            "powerstatsContainer"
+          );
+          var Divpowerstats = createGameElement("div", "powerstats");
           var race = createGameElement("th", "race");
           var gender = createGameElement("th", "gender");
           var height = createGameElement("th", "height");
@@ -42,20 +46,24 @@ function afficherInformations(page = 0) {
           weight.textContent = info.appearance.weight;
           place_of_birth.textContent = info.biography.placeOfBirth;
           alignment.textContent = info.biography.alignment;
-
+          Object.entries(info.powerstats).forEach(([key, value]) => {
+            var Pragraphspowerstats = createGameElement(
+              "p",
+              "ParagraphPowerstats"
+            );
+            Pragraphspowerstats.textContent = `${key}: ${value}`;
+            Divpowerstats.appendChild(Pragraphspowerstats);
+          });
+          Containerpowerstats.appendChild(Divpowerstats);
           infoContainer.appendChild(tr);
           tr.appendChild(imgContainer);
           imgContainer.appendChild(img);
           tr.appendChild(name);
           tr.appendChild(id);
           tr.appendChild(full_name);
-          tr.appendChild(powerstats);
+          tr.appendChild(Divpowerstats);
           //powerstats need to be fixed to display all powerstats
-          info.powerstats.forEach((powerstat) => {
-            var powerstatElement = createGameElement("p", "powerstat");
-            powerstatElement.textContent = powerstat;
-            powerstats.appendChild(powerstatElement);
-          });
+
           tr.appendChild(gender);
           tr.appendChild(height);
           tr.appendChild(weight);
@@ -72,26 +80,25 @@ function afficherInformations(page = 0) {
 var page = 0;
 afficherInformations(page);
 function select_page(direction = "") {
-if (direction === "-") {
-  if (page > 0) {
-    page--;
+  if (direction === "-") {
+    if (page > 0) {
+      page--;
+      afficherInformations(page);
+    }
+  } else if (direction === "+") {
+    page++;
+    afficherInformations(page);
+  } else if (direction === "") {
     afficherInformations(page);
   }
-} else if (direction === "+") {
-  page++;
-  afficherInformations(page);
-} else if (direction === "") {
-  afficherInformations(page);
-}
-document.getElementById("page").textContent = page;
+  document.getElementById("page").textContent = page;
 }
 
 function createGameElement(element, className) {
-const gameElement = document.createElement(element);
-gameElement.className = className;
-return gameElement;
+  const gameElement = document.createElement(element);
+  gameElement.className = className;
+  return gameElement;
 }
-
 
 function search(info) {
   console.log("search");
@@ -99,23 +106,20 @@ function search(info) {
   search.toLowerCase();
   if (search === "") {
     return info;
-  }else{
+  } else {
     return info.filter((info) => info.name.toLowerCase().includes(search));
   }
-
 }
 
-
-
 function sort_name(info) {
-info.sort((a, b) => {
-  if (a.name < b.name) {
-    return -1;
-  } else {
-    return 1;
-  }
-});
-return info;
+  info.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  return info;
 }
 
 /*function sortAZ(data, propertyPath) {
