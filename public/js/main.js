@@ -15,8 +15,9 @@ function afficherInformations(page = 0) {
       var infoContainer = document.getElementById("infoContainer");
       var index = 0;
       infoContainer.innerHTML = "";
+      var filteredData = search(data); 
       //sortAZ(filteredData, "appearance.race");
-      data.forEach((info) => {
+      filteredData.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
           var tr = createGameElement("tr", "info");
           var name = createGameElement("th", "name");
