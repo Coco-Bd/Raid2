@@ -19,5 +19,5 @@ app.get('/', (req, res) => {
 const PORT = 3032;
 
 app.listen(PORT, () => {
-  console.log(`Serveur en écoute sur le port http://localhost:${PORT}`);
+  console.log(`Server listening on port http://localhost:${PORT}`);
 });
