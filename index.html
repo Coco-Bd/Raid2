@@ -49,13 +49,37 @@
           <th>Birth Place</th>
           <th>Alignment</th>
         </tr>
+        <tbody id="dataContainer"></tbody>
       </table>
     </div>
     <footer>
-      <button id="pageLess" onclick="select_page('-')">-</button>
-      <div id="page">0</div>
-      <button id="pageMore" onclick="select_page('+')">+</button>
+      <section id="footerContainer">
+        <button id="pageLess" onclick="select_page('-')">-</button>
+        <div id="page">0</div>
+        <button id="pageMore" onclick="select_page('+')">+</button>
+      </section>
+
+      <div class="logos">
+        <div class="logos-slide">
+          <img src="./img/css-logo.png" />
+          <img src="./img/html-logo.png" />
+          <img src="./img/js-logo.png" />
+          <img src="./img/ynov-logo.png" />
+          <img src="./img/vscode-logo.png" />
+
+          <img src="./img/css-logo.png" />
+          <img src="./img/html-logo.png" />
+          <img src="./img/js-logo.png" />
+          <img src="./img/ynov-logo.png" />
+          <img src="./img/vscode-logo.png" />
+        </div>
+      </div>
     </footer>
+
+    <script>
+      var copy = document.querySelector(".logos-slide").cloneNode(true);
+      document.querySelector(".logos").appendChild(copy);
+    </script>
 
     <script src="main.js"></script>
   </body>

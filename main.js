@@ -12,9 +12,9 @@ function afficherInformations(page = 0) {
   fetch("https://raw.githack.com/akabab/superhero-api/0.2.0/api/all.json")
     .then((response) => response.json())
     .then((data) => {
-      var infoContainer = document.getElementById("infoContainer");
+      var infoContainer = document.getElementById("dataContainer");
       var index = 0;
-      // infoContainer.innerHTML = "";
+      infoContainer.innerHTML = "";
       //sortAZ(filteredData, "appearance.race");
       data.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
