@@ -1,6 +1,10 @@
 //Thisfunctioni scalledonlyafterthedatahasbeenfetched,andparsed.
+document.getElementById('search').addEventListener('input', function() {
+  page = 0;
+  select_page();
+});
 const loadData = (heroes) => {
-  console.log(heroes);
+console.log(heroes);
 };
 
 function afficherInformations(page = 0) {
@@ -11,6 +15,7 @@ function afficherInformations(page = 0) {
       var infoContainer = document.getElementById("infoContainer");
       var index = 0;
       infoContainer.innerHTML = "";
+      //sortAZ(filteredData, "appearance.race");
       data.forEach((info) => {
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
           var tr = createGameElement("tr", "info");
@@ -66,21 +71,59 @@ function afficherInformations(page = 0) {
 
 var page = 0;
 afficherInformations(page);
-function select_page(direction) {
-  if (direction === "-") {
-    if (page > 0) {
-      page--;
-      afficherInformations(page);
-    }
-  } else if (direction === "+") {
-    page++;
+function select_page(direction = "") {
+if (direction === "-") {
+  if (page > 0) {
+    page--;
     afficherInformations(page);
   }
-  document.getElementById("page").textContent = page;
+} else if (direction === "+") {
+  page++;
+  afficherInformations(page);
+} else if (direction === "") {
+  afficherInformations(page);
+}
+document.getElementById("page").textContent = page;
 }
 
 function createGameElement(element, className) {
-  const gameElement = document.createElement(element);
-  gameElement.className = className;
-  return gameElement;
+const gameElement = document.createElement(element);
+gameElement.className = className;
+return gameElement;
 }
+
+
+function search(info) {
+  console.log("search");
+  var search = document.getElementById("search").value;
+  search.toLowerCase();
+  if (search === "") {
+    return info;
+  }else{
+    return info.filter((info) => info.name.toLowerCase().includes(search));
+  }
+
+}
+
+
+
+function sort_name(info) {
+info.sort((a, b) => {
+  if (a.name < b.name) {
+    return -1;
+  } else {
+    return 1;
+  }
+});
+return info;
+}
+
+/*function sortAZ(data, propertyPath) {
+return data.sort((a, b) => {
+  if (a+propertyPath&& b+propertyPath) {
+    return String(a+propertyPath).localeCompare(String(b+propertyPath));
+  } else {
+    return 0;
+  }
+});
+}*/
