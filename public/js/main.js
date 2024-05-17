@@ -1,23 +1,30 @@
-//Thisfunctioni scalledonlyafterthedatahasbeenfetched,andparsed.
 document.getElementById("search").addEventListener("input", function () {
   page = 0;
   select_page();
 });
+
 const loadData = (heroes) => {
   console.log(heroes);
 };
 
-function afficherInformations(page = 0) {
+//displays information based on page and search
+function showInformation(page = 0) {
   var infoCount = document.getElementById("infoCount").value;
   fetch("https://raw.githack.com/akabab/superhero-api/0.2.0/api/all.json")
     .then((response) => response.json())
     .then((data) => {
       var infoContainer = document.getElementById("infoContainer");
+      var title = document.getElementById("title");
       var index = 0;
+
       infoContainer.innerHTML = "";
+
+      infoContainer.appendChild(title);
       var filteredData = search(data); 
-      //sortAZ(filteredData, "appearance.race");
+      sortData(filteredData, currentSortColumn, ascending);
+      //titleSort(data)     //function not fonctionnal
       filteredData.forEach((info) => {
+        
         if (index >= page * infoCount && index < (page + 1) * infoCount) {
           var tr = createGameElement("tr", "info");
           var name = createGameElement("th", "name");
@@ -25,10 +32,7 @@ function afficherInformations(page = 0) {
           var img = createGameElement("img", "img");
           var id = createGameElement("th", "id");
           var full_name = createGameElement("th", "full_name");
-          var Containerpowerstats = createGameElement(
-            "th",
-            "powerstatsContainer"
-          );
+          var Containerpowerstats = createGameElement("th","powerstatsContainer");
           var Divpowerstats = createGameElement("div", "powerstats");
           var race = createGameElement("th", "race");
           var gender = createGameElement("th", "gender");
@@ -48,7 +52,6 @@ function afficherInformations(page = 0) {
           place_of_birth.textContent = info.biography.placeOfBirth;
           alignment.textContent = info.biography.alignment;
 
-          //iterate over the powerstats object and create a paragraph for each key value pair
           Object.entries(info.powerstats).forEach(([key, value]) => {
             var Pragraphspowerstats = createGameElement(
               "p",
@@ -65,6 +68,7 @@ function afficherInformations(page = 0) {
           tr.appendChild(id);
           tr.appendChild(full_name);
           tr.appendChild(Divpowerstats);
+          tr.appendChild(race);
           tr.appendChild(gender);
           tr.appendChild(height);
           tr.appendChild(weight);
@@ -79,28 +83,32 @@ function afficherInformations(page = 0) {
 }
 
 var page = 0;
-afficherInformations(page);
+showInformation(page);
+
+// function to select the page
 function select_page(direction = "") {
   if (direction === "-") {
     if (page > 0) {
       page--;
-      afficherInformations(page);
+      showInformation(page);
     }
   } else if (direction === "+") {
     page++;
-    afficherInformations(page);
+    showInformation(page);
   } else if (direction === "") {
-    afficherInformations(page);
+    showInformation(page);
   }
   document.getElementById("page").textContent = page;
 }
 
+// function to create a game element
 function createGameElement(element, className) {
   const gameElement = document.createElement(element);
   gameElement.className = className;
   return gameElement;
 }
 
+// function to search one of the heroes by name 
 function search(info) {
   console.log("search");
   var search = document.getElementById("search").value;
@@ -111,24 +119,70 @@ function search(info) {
     return info.filter((info) => info.name.toLowerCase().includes(search));
   }
 }
-
-function sort_name(info) {
-  info.sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
+// function to sort the data in ascending order
+function sortData(data, propertyPath, ascending) {
+  const properties = propertyPath.split('.');
+  data.sort((a, b) => {
+    let aValue = a, bValue = b;
+    for (let property of properties) {
+      aValue = aValue[property];
+      bValue = bValue[property];
+    }
+    if (aValue && bValue) {
+      return String(aValue).localeCompare(String(bValue));
     } else {
-      return 1;
+      return 0;
     }
   });
-  return info;
 }
 
-/*function sortAZ(data, propertyPath) {
-return data.sort((a, b) => {
-  if (a+propertyPath&& b+propertyPath) {
-    return String(a+propertyPath).localeCompare(String(b+propertyPath));
-  } else {
-    return 0;
-  }
+
+
+
+
+//function which retrieves the title line to sort to see if it is clicked
+function titleSort(data){
+   var titleRow = document.getElementById("title");
+   titleRow.addEventListener("click", function(event) {
+     if (event.target.tagName === "TH") {
+       var className = event.target.className;
+     }
+     
+     console.log(className);
+     switch (className) {
+      case "name":
+        sortAZ(data, "name");
+        break;
+      case "id":
+        sortAZ(data, "id");
+      case "full_name":
+        sortAZ(data, "biography.fullName");
+        break;
+      case "race":
+        sortAZ(data, "appearance.race");
+        break;
+      case "gender":
+        sortAZ(data, "appearance.gender");
+        break;
+      case "height":
+        sortAZ(data, "appearance.height");
+        break;
+      case "weight":
+        sortAZ(data, "appearance.weight");
+        break;
+      case "place_of_birth":
+        sortAZ(data, "biography.placeOfBirth");
+        break;
+      case "alignment":
+        sortAZ(data, "biography.alignment");
+        break;
+      default:
+        sortAZ(data, "name");
+        break;
+    }
+    console.log("data sorted");
+    console.log(data);
+    console.log("data finished");
+    return data;
 });
-}*/
+}
