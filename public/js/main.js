@@ -31,7 +31,7 @@ function showInformation(page = 0) {
             "powerstatsContainer"
           );
           var Divpowerstats = createGameElement("td", "powerstats");
-          var race = createGameElement("h4", "race");
+          var race = createGameElement("h6", "race");
           var g_h_w_container = createGameElement("td", "g_h_w_container");
           var gender = createGameElement("h6", "gender");
           var height = createGameElement("p", "height");
