@@ -1,4 +1,4 @@
-# Welcome to the raid2 project (super naughty), I hope you find what you are looking for
+# Welcome to the raid2 project, I hope you find what you are looking for
 
 ## Description
 
